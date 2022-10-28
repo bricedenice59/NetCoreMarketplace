@@ -1,0 +1,19 @@
+/* Generate a random Guid of 16 chars /* 
+SELECT lower(hex(randomblob(16)));
+
+INSERT INTO ProductStocks (Id, ProductsLeft) VALUES ("6e44ab209e7ad86251b645efb0acb140",44322);
+INSERT INTO ProductStocks (Id, ProductsLeft) VALUES ("5150701cf350a2a7e61f5d5d0b03e2d2",765);
+INSERT INTO ProductStocks (Id, ProductsLeft) VALUES ("cbadd7f96232ccb9a161f60973e67866",3321);
+
+INSERT INTO ProductTypes (Id, Kind) VALUES ("c009395b5e05b5e86427ed8fc7c793dc", "Electronic");
+INSERT INTO ProductTypes (Id, Kind) VALUES ("8d46bc7c2d2b42384a9c1602b68946bb", "Mobile device");
+INSERT INTO ProductTypes (Id, Kind) VALUES ("f0e30bb0bbf122db1bc7327f06552b7e", "Software");
+
+INSERT INTO Products (Id, Name, Description, ProductStockId, ProductTypeId) 
+VALUES ("3b309be2795a6b1345be6eea7e582312", "iPhone 14 Pro", "Best flagship mobile device from Apple","5150701cf350a2a7e61f5d5d0b03e2d2","8d46bc7c2d2b42384a9c1602b68946bb");
+
+INSERT INTO Products (Id, Name, Description, ProductStockId, ProductTypeId)
+VALUES ("5d0bc914faff2bd3952d4a96c67478d4", "Google Pixel 7 Pro", "Best flagship mobile device from Google","cbadd7f96232ccb9a161f60973e67866","8d46bc7c2d2b42384a9c1602b68946bb");
+
+INSERT INTO Products (Id, Name, Description, ProductStockId, ProductTypeId)
+VALUES ("2158c5523088c811c0f1c53a9330052c", "Xiaomi 12T Pro", "Best flagship mobile device from Xiaomi","6e44ab209e7ad86251b645efb0acb140","8d46bc7c2d2b42384a9c1602b68946bb");
