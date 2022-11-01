@@ -3,13 +3,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Core.Models;
 
-public class Product
+public class Product : BaseModel
 {
-    [Key]
-    public Guid Id { get; set; }
-    
+    [Required]
     public string Name { get; set; }
     
+    [Required]
     public string Description { get; set; }
 
     [ForeignKey("ProductStockId")]
@@ -19,4 +18,9 @@ public class Product
     [ForeignKey("ProductTypeId")]
     public Guid ProductTypeId { get; set; }
     public ProductType ProductType { get; set; }
+    
+    [ForeignKey("ProductPriceId")]
+    public Guid ProductPriceId { get; set; }
+    public ProductPrice ProductPrice { get; set; }
+    
 }

@@ -11,15 +11,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221027035033_InitialCration")]
-    partial class InitialCration
+    [Migration("20221101082230_InitialCreation")]
+    partial class InitialCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.10");
 
-            modelBuilder.Entity("API.Model.Product", b =>
+            modelBuilder.Entity("Core.Models.Product", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,6 +33,9 @@ namespace Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<Guid>("ProductPriceId")
+                        .HasColumnType("TEXT");
+
                     b.Property<Guid>("ProductStockId")
                         .HasColumnType("TEXT");
 
@@ -41,6 +44,8 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProductPriceId");
+
                     b.HasIndex("ProductStockId");
 
                     b.HasIndex("ProductTypeId");
@@ -48,7 +53,21 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("API.Model.ProductStock", b =>
+            modelBuilder.Entity("Core.Models.ProductPrice", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("PriceWithExcludedVAT")
+                        .HasColumnType("REAL");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductPrice");
+                });
+
+            modelBuilder.Entity("Core.Models.ProductStock", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -62,7 +81,7 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("ProductStocks");
                 });
 
-            modelBuilder.Entity("API.Model.ProductType", b =>
+            modelBuilder.Entity("Core.Models.ProductType", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,19 +96,27 @@ namespace Infrastructure.Data.Migrations
                     b.ToTable("ProductTypes");
                 });
 
-            modelBuilder.Entity("API.Model.Product", b =>
+            modelBuilder.Entity("Core.Models.Product", b =>
                 {
-                    b.HasOne("API.Model.ProductStock", "ProductStock")
+                    b.HasOne("Core.Models.ProductPrice", "ProductPrice")
+                        .WithMany()
+                        .HasForeignKey("ProductPriceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Core.Models.ProductStock", "ProductStock")
                         .WithMany()
                         .HasForeignKey("ProductStockId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("API.Model.ProductType", "ProductType")
+                    b.HasOne("Core.Models.ProductType", "ProductType")
                         .WithMany()
                         .HasForeignKey("ProductTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("ProductPrice");
 
                     b.Navigation("ProductStock");
 

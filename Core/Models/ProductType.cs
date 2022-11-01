@@ -2,10 +2,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.Models;
 
-public class ProductType
+public class ProductType : BaseModel
 {
-    [Key]
-    public Guid Id { get; set; }
-    
+    [Required]
     public string Kind{ get; set; }
 }

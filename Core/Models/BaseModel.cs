@@ -2,8 +2,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Core.Models;
 
-public class ProductStock : BaseModel
+public class BaseModel
 {
     [Required]
-    public int ProductsLeft { get; set; }
+    public Guid Id { get; set; }
 }
