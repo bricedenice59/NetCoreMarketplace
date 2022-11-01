@@ -1,8 +1,8 @@
-using API.Data;
+using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-ConfigurationManager configuration = builder.Configuration;
+var configuration = builder.Configuration;
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -13,7 +13,7 @@ builder.Services.AddSwaggerGen();
 // Add Application Db Context options
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
- 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

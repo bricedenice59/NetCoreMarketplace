@@ -1,11 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace API.Model;
+namespace Core.Models;
 
-public class ProductType
+public class ProductStock
 {
     [Key]
     public Guid Id { get; set; }
     
-    public string Kind{ get; set; }
+    public int ProductsLeft { get; set; }
 }
