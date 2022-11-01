@@ -1,6 +1,7 @@
 using API.Data;
 using API.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
@@ -16,9 +17,15 @@ public class ProductsController : ControllerBase
     }
     
     [HttpGet]
-    public ActionResult<List<Product>> GetAllProducts()
+    public async Task<ActionResult<List<Product>>> GetAllProducts()
     {
-        var products = _dbContext.Products.ToList();
+        var products = await _dbContext.Products.ToListAsync();
         return Ok(products);
+    }
+    
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Product>> GetProducts(string id)
+    {
+        return await _dbContext.Products.FirstOrDefaultAsync(x=>x.Id.ToString() == id);
     }
 }
