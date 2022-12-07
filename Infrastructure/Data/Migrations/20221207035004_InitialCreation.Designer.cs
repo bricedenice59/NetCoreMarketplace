@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221101082230_InitialCreation")]
+    [Migration("20221207035004_InitialCreation")]
     partial class InitialCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,8 +33,8 @@ namespace Infrastructure.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ProductPriceId")
-                        .HasColumnType("TEXT");
+                    b.Property<double>("PriceWithExcludedVAT")
+                        .HasColumnType("REAL");
 
                     b.Property<Guid>("ProductStockId")
                         .HasColumnType("TEXT");
@@ -44,27 +44,11 @@ namespace Infrastructure.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductPriceId");
-
                     b.HasIndex("ProductStockId");
 
                     b.HasIndex("ProductTypeId");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("Core.Models.ProductPrice", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("PriceWithExcludedVAT")
-                        .HasColumnType("REAL");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProductPrice");
                 });
 
             modelBuilder.Entity("Core.Models.ProductStock", b =>
@@ -98,12 +82,6 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Core.Models.Product", b =>
                 {
-                    b.HasOne("Core.Models.ProductPrice", "ProductPrice")
-                        .WithMany()
-                        .HasForeignKey("ProductPriceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Core.Models.ProductStock", "ProductStock")
                         .WithMany()
                         .HasForeignKey("ProductStockId")
@@ -115,8 +93,6 @@ namespace Infrastructure.Data.Migrations
                         .HasForeignKey("ProductTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("ProductPrice");
 
                     b.Navigation("ProductStock");
 

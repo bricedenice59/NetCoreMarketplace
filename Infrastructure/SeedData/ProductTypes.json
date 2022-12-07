@@ -1,0 +1,14 @@
+[
+    {
+        "Id": "9e33b5dc-207d-4e57-b698-b7f889b1b8c0",
+        "Kind": "Electronic"
+    },
+    {
+        "Id": "18c8f014-3b41-450c-9e1f-cf1aa40bc183",
+        "Kind": "Mobile device"
+    },
+    {
+        "Id": "1df456b9-a89c-414d-89b1-40839097afbe",
+        "Kind": "Software"
+    }
+]

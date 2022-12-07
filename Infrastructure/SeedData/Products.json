@@ -1,0 +1,26 @@
+[
+    {
+        "Description": "Best flagship mobile device from Apple",
+        "Id": "74995540-f8c4-43cb-8856-106829ad8333",
+        "Name": "iPhone 14 Pro",
+        "PriceWithExcludedVAT": 999.9,
+        "ProductStockId": "903d42d5-0eb8-498d-b4b1-95d71ecd24ab",
+        "ProductTypeId": "18c8f014-3b41-450c-9e1f-cf1aa40bc183"
+    },
+    {
+        "Description": "Best flagship mobile device from Google",
+        "Id": "1611b2bf-00f5-4a39-842b-c94e4b159ca6",
+        "Name": "Google Pixel 7 Pro",
+        "PriceWithExcludedVAT": 679.0,
+        "ProductStockId": "2f2094c4-532e-4aeb-9e1b-6c2cea6649fb",
+        "ProductTypeId": "18c8f014-3b41-450c-9e1f-cf1aa40bc183"
+    },
+    {
+        "Description": "Best flagship mobile device from Xiaomi",
+        "Id": "a4a7051c-04e3-4f89-a8b7-538fca56d316",
+        "Name": "Xiaomi 12T Pro",
+        "PriceWithExcludedVAT": 599.0,
+        "ProductStockId": "a9ed6f8f-470d-48f9-871c-64b093429262",
+        "ProductTypeId": "18c8f014-3b41-450c-9e1f-cf1aa40bc183"
+    }
+]

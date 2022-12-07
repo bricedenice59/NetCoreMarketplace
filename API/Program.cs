@@ -1,6 +1,7 @@
 using Core.Interfaces;
 using Infrastructure;
 using Infrastructure.Data;
+using Infrastructure.SeedData;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,7 @@ using (var scope = app.Services.CreateScope())
     {
         var context = services.GetRequiredService<ApplicationDbContext>();
         await context.Database.MigrateAsync();
+        await StoreContextSeed.SeedAsync(context, loggerFactory);
     }
     catch (Exception ex)
     {

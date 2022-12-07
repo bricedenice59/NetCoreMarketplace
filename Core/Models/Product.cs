@@ -19,8 +19,7 @@ public class Product : BaseModel
     public Guid ProductTypeId { get; set; }
     public ProductType ProductType { get; set; }
     
-    [ForeignKey("ProductPriceId")]
-    public Guid ProductPriceId { get; set; }
-    public ProductPrice ProductPrice { get; set; }
+    [Required]
+    public double PriceWithExcludedVAT { get; set; }
     
 }
