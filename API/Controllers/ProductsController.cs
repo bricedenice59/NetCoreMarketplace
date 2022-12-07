@@ -23,8 +23,25 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Product>> GetProducts(string id)
+    public async Task<ActionResult<Product>> GetProducts(Guid id)
     {
-        return await _productRepository.GetProductByIdAsync(id);
+        var product = await _productRepository.GetProductByIdAsync(id);
+        if (product == null) return NotFound();
+        return Ok(product);
+    }
+    
+    [HttpGet("types")]
+    public async Task<ActionResult<ProductType>> GetAllProductTypes()
+    {
+        var productsTypes = await _productRepository.GetAllProductTypesAsync();
+        return Ok(productsTypes);
+    }
+    
+    [HttpGet("stocks/{id}")]
+    public async Task<ActionResult<int?>> GetProductStockById(Guid id)
+    {
+        var product = await _productRepository.GetProductStockByIdAsync(id);
+        if (!product.HasValue) return NotFound();
+        return Ok(product.Value);
     }
 }
