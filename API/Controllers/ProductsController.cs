@@ -1,5 +1,6 @@
 using Core.Interfaces;
 using Core.Models;
+using Core.Specifications;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers;
@@ -27,7 +28,8 @@ public class ProductsController : ControllerBase
     [HttpGet("{id}")]
     public async Task<ActionResult<Product>> GetProducts(Guid id)
     {
-        var product = await _productRepository.GetByIdAsync(id);
+        var productSpec = new ProductWithTypeAndStockSpecification(id);
+        var product = await _productRepository.GetEntityWithSpecification(productSpec);
         if (product == null) return NotFound();
         return Ok(product);
     }
@@ -42,8 +44,9 @@ public class ProductsController : ControllerBase
     [HttpGet("stocks/{id}")]
     public async Task<ActionResult<int?>> GetProductStockById(Guid id)
     {
-        var product = await _productRepository.GetProductStockByIdAsync(id);
-        if (!product.HasValue) return NotFound();
-        return Ok(product.Value);
+        var pStockSpec = new ProductStockSpecification(id);
+        var product = await _productRepository.GetEntityWithSpecification(pStockSpec);
+        if (product == null) return NotFound();
+        return Ok(product.ProductStock.ProductsLeft);
     }
 }

@@ -7,6 +7,12 @@ public class BaseSpecification<T> : ISpecification<T>
     public Expression<Func<T, bool>> WhereCriteria { get; }
     public List<Expression<Func<T, object>>> Includes { get; } = new();
 
+
+    public BaseSpecification()
+    {
+        
+    }
+    
     public BaseSpecification(Expression<Func<T, bool>> criteria)
     {
         WhereCriteria = criteria;
