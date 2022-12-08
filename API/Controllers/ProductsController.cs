@@ -1,3 +1,5 @@
+using API.Dtos;
+using AutoMapper;
 using Core.Interfaces;
 using Core.Models;
 using Core.Specifications;
@@ -11,11 +13,15 @@ public class ProductsController : ControllerBase
 {
     private readonly IGenericRepository<Product> _productRepository;
     private readonly IGenericRepository<ProductType> _productTypeRepository;
+    private readonly IMapper _mapper;
 
-    public ProductsController(IGenericRepository<Product> productRepository, IGenericRepository<ProductType> productTypeRepository)
+    public ProductsController(IGenericRepository<Product> productRepository,
+        IGenericRepository<ProductType> productTypeRepository,
+        IMapper mapper)
     {
         _productRepository = productRepository;
         _productTypeRepository = productTypeRepository;
+        _mapper = mapper;
     }
 
     [HttpGet]
@@ -26,12 +32,14 @@ public class ProductsController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Product>> GetProducts(Guid id)
+    public async Task<ActionResult<ProductDto>> GetProduct(Guid id)
     {
         var productSpec = new ProductWithTypeAndStockSpecification(id);
         var product = await _productRepository.GetEntityWithSpecification(productSpec);
         if (product == null) return NotFound();
-        return Ok(product);
+
+        var productDto = _mapper.Map<Product, ProductDto>(product);
+        return Ok(productDto);
     }
     
     [HttpGet("types")]
