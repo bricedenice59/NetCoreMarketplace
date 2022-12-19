@@ -2,7 +2,7 @@ using Microsoft.OpenApi.Models;
 
 namespace API.Errors;
 
-public class ApiException : ApiResult
+public class ApiException : ApiResponse
 {
     public string Exception { get; set; }
 

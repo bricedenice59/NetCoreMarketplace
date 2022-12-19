@@ -18,7 +18,7 @@ public class BuggyController : BaseApiController
     {
         var notfoundProduct = await _dbContext.Products.FindAsync(Guid.NewGuid());
         if (notfoundProduct == null)
-            return NotFound(new ApiResult(404));
+            return NotFound(new ApiResponse(404));
         
         return Ok();
     }
@@ -35,7 +35,7 @@ public class BuggyController : BaseApiController
     [HttpGet("badRequest")]
     public ActionResult GetBadRequest()
     {
-        return BadRequest(new ApiResult(400));
+        return BadRequest(new ApiResponse(400));
     }
     
     [HttpGet("badRequest/{id}")]

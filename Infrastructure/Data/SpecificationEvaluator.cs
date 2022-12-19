@@ -13,6 +13,16 @@ public class SpecificationEvaluator<TEntity> where TEntity: BaseModel
         {
             finalQuery = finalQuery.Where(specification.WhereCriteria);
         }
+        
+        if (specification.OrderBy != null)
+        {
+            finalQuery = finalQuery.OrderBy(specification.OrderBy);
+        }
+        
+        if (specification.OrderByDescending != null)
+        {
+            finalQuery = finalQuery.OrderByDescending(specification.OrderByDescending);
+        }
 
         if (specification.Includes.Any())
         {

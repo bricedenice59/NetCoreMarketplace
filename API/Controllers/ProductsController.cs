@@ -1,4 +1,5 @@
 using API.Dtos;
+using API.Errors;
 using AutoMapper;
 using Core.Interfaces;
 using Core.Models;
@@ -21,12 +22,15 @@ public class ProductsController : BaseApiController
         _productTypeRepository = productTypeRepository;
         _mapper = mapper;
     }
-
+    
     [HttpGet]
-    public async Task<ActionResult<List<Product>>> GetAllProducts()
+    public async Task<ActionResult<List<Product>>> GetAllProducts(string? sortBy)
     {
-        var products = await _productRepository.ListAllAsync();
-        return Ok(products);
+        var productsSpec = new ProductWithTypeAndStockSpecification(sortBy);
+        var products = await _productRepository.ListAsyncWithSpecification(productsSpec);
+        
+        var productsDto = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDto>>(products);
+        return Ok(productsDto);
     }
 
     [HttpGet("{id}")]
@@ -34,7 +38,7 @@ public class ProductsController : BaseApiController
     {
         var productSpec = new ProductWithTypeAndStockSpecification(id);
         var product = await _productRepository.GetEntityWithSpecification(productSpec);
-        if (product == null) return NotFound();
+        if (product == null) return NotFound(new ApiResponse(404, $"Product with id: {id.ToString()} does not exist"));
 
         var productDto = _mapper.Map<Product, ProductDto>(product);
         return Ok(productDto);
@@ -52,7 +56,8 @@ public class ProductsController : BaseApiController
     {
         var pStockSpec = new ProductStockSpecification(id);
         var product = await _productRepository.GetEntityWithSpecification(pStockSpec);
-        if (product == null) return NotFound();
+        if (product == null) return NotFound(new ApiResponse(404, $"Cannot fetch product stock, id: {id.ToString()} does not exist"));
+
         return Ok(product.ProductStock.ProductsLeft);
     }
 }
