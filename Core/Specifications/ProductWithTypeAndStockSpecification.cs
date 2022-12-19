@@ -5,7 +5,8 @@ namespace Core.Specifications;
 
 public class ProductWithTypeAndStockSpecification : BaseSpecification<Product>
 {
-    public ProductWithTypeAndStockSpecification(string? sortExpression) : base()
+    public ProductWithTypeAndStockSpecification(string? sortExpression, Guid? typeId) 
+        : base((x) => !typeId.HasValue || x.ProductTypeId == typeId.Value)
     {
         AddInclude(x=>x.ProductType);
         AddInclude(x=>x.ProductStock);
