@@ -5,15 +5,16 @@ namespace Core.Specifications;
 
 public class ProductWithTypeAndStockSpecification : BaseSpecification<Product>
 {
-    public ProductWithTypeAndStockSpecification(string? sortExpression, Guid? typeId) 
-        : base((x) => !typeId.HasValue || x.ProductTypeId == typeId.Value)
+    public ProductWithTypeAndStockSpecification(ProductSpecParams productParams) 
+        : base((x) => !productParams.TypeId.HasValue || x.ProductTypeId == productParams.TypeId.Value)
     {
         AddInclude(x=>x.ProductType);
         AddInclude(x=>x.ProductStock);
-
-        if (string.IsNullOrEmpty(sortExpression)) return;
+        ApplyPaging(productParams.PageSize * (productParams.PageIndex -1), productParams.PageSize);
+        
+        if (string.IsNullOrEmpty(productParams.SortBy)) return;
         {
-            switch (sortExpression)
+            switch (productParams.SortBy)
             {
                 case "priceAsc":
                     AddOrderBy(x=>x.PriceWithExcludedVAT);

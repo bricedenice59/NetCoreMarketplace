@@ -23,6 +23,11 @@ public class SpecificationEvaluator<TEntity> where TEntity: BaseModel
         {
             finalQuery = finalQuery.OrderByDescending(specification.OrderByDescending);
         }
+        
+        if (specification.IsPaginationEnabled)
+        {
+            finalQuery = finalQuery.Skip(specification.Skip).Take(specification.Take);
+        }
 
         if (specification.Includes.Any())
         {

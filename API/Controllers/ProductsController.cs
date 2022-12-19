@@ -24,9 +24,9 @@ public class ProductsController : BaseApiController
     }
     
     [HttpGet]
-    public async Task<ActionResult<List<Product>>> GetAllProducts(string? sortBy, Guid? typeId)
+    public async Task<ActionResult<List<Product>>> GetAllProducts([FromQuery]ProductSpecParams productParams)
     {
-        var productsSpec = new ProductWithTypeAndStockSpecification(sortBy, typeId);
+        var productsSpec = new ProductWithTypeAndStockSpecification(productParams);
         var products = await _productRepository.ListAsyncWithSpecification(productsSpec);
         
         var productsDto = _mapper.Map<IReadOnlyList<Product>, IReadOnlyList<ProductDto>>(products);
