@@ -3,3 +3,5 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+client/ssl/localhost.key
+client/ssl/localhost.crt
