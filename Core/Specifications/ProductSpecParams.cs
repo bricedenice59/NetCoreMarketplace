@@ -16,4 +16,7 @@ public class ProductSpecParams
     public Guid? TypeId { get; set; }
     
     public string? SortBy { get; set; }
+    
+    private string? _searchCriteria;
+    public string? SearchCriteria { get => _searchCriteria; set => _searchCriteria = value?.ToLower(); }
 }

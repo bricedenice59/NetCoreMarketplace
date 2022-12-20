@@ -6,7 +6,9 @@ namespace Core.Specifications;
 public class ProductWithTypeAndStockSpecification : BaseSpecification<Product>
 {
     public ProductWithTypeAndStockSpecification(ProductSpecParams productParams) 
-        : base((x) => !productParams.TypeId.HasValue || x.ProductTypeId == productParams.TypeId.Value)
+        : base((x) =>  
+            (string.IsNullOrEmpty(productParams.SearchCriteria) || x.Name.ToLower().Contains(productParams.SearchCriteria))
+            && (!productParams.TypeId.HasValue || x.ProductTypeId == productParams.TypeId.Value))
     {
         AddInclude(x=>x.ProductType);
         AddInclude(x=>x.ProductStock);
