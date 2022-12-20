@@ -12,7 +12,6 @@ public class BaseSpecification<T> : ISpecification<T>
     public int Skip { get; private set;}
     public bool IsPaginationEnabled { get; private set;}
 
-
     public BaseSpecification()
     {
         
