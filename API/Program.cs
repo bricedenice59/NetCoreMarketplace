@@ -25,7 +25,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddCors(options => 
     options.AddPolicy(corsPolicy, 
-        policyBuilder => policyBuilder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:7120")));
+        policyBuilder => policyBuilder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200")));
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())
