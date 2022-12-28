@@ -13,5 +13,35 @@
         "Id": "e7826c93-5d96-45bc-ad2d-83cbd018b556",
         "ProductId": "74995540-f8c4-43cb-8856-106829ad8333",
         "Url": "images/products/iphone14Pro_3.png"
+    },
+    {
+        "Id": "eac037ce-dbe7-45cb-8bf3-8c75af75fa1e",
+        "ProductId": "1611b2bf-00f5-4a39-842b-c94e4b159ca6",
+        "Url": "images/products/googlePixel7Pro_1.png"
+    },    
+    {
+        "Id": "76e81ab8-d72e-4404-aad2-38bba622c907",
+        "ProductId": "1611b2bf-00f5-4a39-842b-c94e4b159ca6",
+        "Url": "images/products/googlePixel7Pro_2.png"
+    },
+    {
+        "Id": "f3466da6-1536-4699-8201-9c01ffdb7952",
+        "ProductId": "a4a7051c-04e3-4f89-a8b7-538fca56d316",
+        "Url": "images/products/xiaomi12TPro_1.png"
+    },
+    {
+        "Id": "81284215-bbea-40fd-92d9-802a6725ddc5",
+        "ProductId": "a4a7051c-04e3-4f89-a8b7-538fca56d316",
+        "Url": "images/products/xiaomi12TPro_2.png"
+    },
+    {
+        "Id": "4c8aa062-ef8b-45e8-82e1-b9c002015315",
+        "ProductId": "a4a7051c-04e3-4f89-a8b7-538fca56d316",
+        "Url": "images/products/xiaomi12TPro_3.png"
+    },
+    {
+        "Id": "e002db1b-1f3f-4c2b-8aec-052d23312fd9",
+        "ProductId": "a4a7051c-04e3-4f89-a8b7-538fca56d316",
+        "Url": "images/products/xiaomi12TPro_4.png"
     }
 ]

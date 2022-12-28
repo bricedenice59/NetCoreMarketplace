@@ -10,5 +10,85 @@
     {
         "Id": "2f2094c4-532e-4aeb-9e1b-6c2cea6649fb",
         "ProductsLeft": 3321
+    },
+    {
+        "Id": "18042163-5fb4-4183-b899-2f7ba5d63292",
+        "ProductsLeft": 203
+    },
+    {
+        "Id": "a5575028-6c7c-4f96-8d98-20f7a72e0b3d",
+        "ProductsLeft": 686
+    },
+    {
+        "Id": "ddd14990-2ed6-4123-b6eb-a9038b79a3ec",
+        "ProductsLeft": 650
+    },
+    {
+        "Id": "3e2e29f0-4126-48e8-a3d2-f00c8b5bd30e",
+        "ProductsLeft": 978
+    },
+    {
+        "Id": "8d6587be-350c-4be1-afd7-2fbc88e4ff6c",
+        "ProductsLeft": 953
+    },
+    {
+        "Id": "7008798b-c904-409a-9b62-057b8c64e363",
+        "ProductsLeft": 868
+    },
+    {
+        "Id": "3fd7d0c7-59fc-43d2-a391-082b4bbf7c5b",
+        "ProductsLeft": 953
+    },
+    {
+        "Id": "5bbae19e-38a5-4dbd-a568-e9aca7ce1f4f",
+        "ProductsLeft": 419
+    },
+    {
+        "Id": "77f39a1f-5171-4f81-9d99-45749355a488",
+        "ProductsLeft": 825
+    },
+    {
+        "Id": "0b340d71-a59f-49a3-a7ae-f326bc121c43",
+        "ProductsLeft": 59
+    },
+    {
+        "Id": "0b4664aa-59a5-470c-b8d5-32cbb5216733",
+        "ProductsLeft": 833
+    },
+    {
+        "Id": "27cbbfda-f8db-4cf9-8fc8-7cab254e86bf",
+        "ProductsLeft": 720
+    },
+    {
+        "Id": "bb3e8597-16d8-4cee-bd6c-b914108e2a35",
+        "ProductsLeft": 736
+    },
+    {
+        "Id": "cd2caffa-789a-47af-b0d9-2835057ee3a9",
+        "ProductsLeft": 843
+    },
+    {
+        "Id": "92feacc3-99e1-4206-9d28-bccef135531d",
+        "ProductsLeft": 769
+    },
+    {
+        "Id": "a07be68b-2750-4837-8cce-a3145c1389e0",
+        "ProductsLeft": 466
+    },
+    {
+        "Id": "7879367d-c616-4c4b-b1af-7c132766e557",
+        "ProductsLeft": 621
+    },
+    {
+        "Id": "a5092e31-4be1-4b7a-879d-af08d4ac4828",
+        "ProductsLeft": 139
+    },
+    {
+        "Id": "5a4f5646-a4a6-49a5-8857-6ee2213bd339",
+        "ProductsLeft": 491
+    },
+    {
+        "Id": "fa365599-e60d-4d47-a728-084bc8a5fce4",
+        "ProductsLeft": 33
     }
 ]
