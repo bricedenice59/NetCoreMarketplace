@@ -10,6 +10,12 @@ public class Product : BaseModel
     
     [Required]
     public string Description { get; set; }
+    
+    [Required]
+    public double PriceWithExcludedVAT { get; set; }
+    
+    [Required]
+    public string MainImageUrl { get; set; }
 
     [ForeignKey("ProductStockId")]
     public Guid ProductStockId { get; set; }
@@ -18,8 +24,6 @@ public class Product : BaseModel
     [ForeignKey("ProductTypeId")]
     public Guid ProductTypeId { get; set; }
     public ProductType ProductType { get; set; }
-    
-    [Required]
-    public double PriceWithExcludedVAT { get; set; }
-    
+
+    public ICollection<ProductImage> ProductImages { get; set; }
 }

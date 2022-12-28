@@ -11,4 +11,8 @@ public class ProductDto
     public string ProductType { get; set; }
     
     public double PriceWithExcludedVAT { get; set; }
+    
+    public string MainImageUrl { get; set; }
+    
+    public ICollection<string> ProductImages  {get; set; }
 }

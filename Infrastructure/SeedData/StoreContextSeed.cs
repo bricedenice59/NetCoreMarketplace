@@ -26,7 +26,7 @@ public class StoreContextSeed
 
                 await context.SaveChangesAsync();
             }
-            if (!context.Products.Any())
+            if (!context.ProductStocks.Any())
             {
                 var productStocks = File.OpenRead("../Infrastructure/SeedData/ProductStocks.json");
                 var pStocks = await JsonSerializer.DeserializeAsync<List<ProductStock>>(productStocks);
@@ -37,7 +37,6 @@ public class StoreContextSeed
 
                 await context.SaveChangesAsync();
             }
-            
             if (!context.Products.Any())
             {
                 var productStocks = File.OpenRead("../Infrastructure/SeedData/products.json");
@@ -45,6 +44,18 @@ public class StoreContextSeed
                 foreach (var product in products)
                 {
                     context.Products.Add(product);
+                }
+
+                await context.SaveChangesAsync();
+            }
+            
+            if (!context.ProductImages.Any())
+            {
+                var productImages = File.OpenRead("../Infrastructure/SeedData/ProductImages.json");
+                var pImages = await JsonSerializer.DeserializeAsync<List<ProductImage>>(productImages);
+                foreach (var pImage in pImages)
+                {
+                    context.ProductImages.Add(pImage);
                 }
 
                 await context.SaveChangesAsync();

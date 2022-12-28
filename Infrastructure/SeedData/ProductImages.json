@@ -1,0 +1,17 @@
+[
+    {
+        "Id": "1e6fac19-9264-4c15-b4d3-e24f767f0d62",
+        "ProductId": "74995540-f8c4-43cb-8856-106829ad8333",
+        "Url": "images/products/iphone14Pro_1.png"
+    },
+    {
+        "Id": "2db60269-c7cb-4068-a46c-8e9075943445",
+        "ProductId": "74995540-f8c4-43cb-8856-106829ad8333",
+        "Url": "images/products/iphone14Pro_2.png"
+    },
+    {
+        "Id": "e7826c93-5d96-45bc-ad2d-83cbd018b556",
+        "ProductId": "74995540-f8c4-43cb-8856-106829ad8333",
+        "Url": "images/products/iphone14Pro_3.png"
+    }
+]

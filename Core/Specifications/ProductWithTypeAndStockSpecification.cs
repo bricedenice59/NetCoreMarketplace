@@ -34,5 +34,6 @@ public class ProductWithTypeAndStockSpecification : BaseSpecification<Product>
     {
         AddInclude(x=>x.ProductType);
         AddInclude(x=>x.ProductStock);
+        AddInclude(x=>x.ProductImages);
     }
 }
