@@ -3,7 +3,7 @@
         "Id": "74995540-f8c4-43cb-8856-106829ad8333",
         "Description": "Best flagship mobile device from Apple",
         "Name": "iPhone 14 Pro",
-        "MainImageUrl": "images/products/iphone14Pro.png",
+        "MainImageUrl": "images/products/iphone14Pro.jpg",
         "PriceWithExcludedVAT": 999.9,
         "ProductStockId": "903d42d5-0eb8-498d-b4b1-95d71ecd24ab",
         "ProductTypeId": "9e33b5dc-207d-4e57-b698-b7f889b1b8c0"
@@ -12,7 +12,7 @@
         "Id": "1611b2bf-00f5-4a39-842b-c94e4b159ca6",
         "Description": "Best flagship mobile device from Google",
         "Name": "Google Pixel 7 Pro",
-        "MainImageUrl": "images/products/googlePixel7Pro.png",
+        "MainImageUrl": "images/products/googlePixel7Pro.jpg",
         "PriceWithExcludedVAT": 679,
         "ProductStockId": "2f2094c4-532e-4aeb-9e1b-6c2cea6649fb",
         "ProductTypeId": "9e33b5dc-207d-4e57-b698-b7f889b1b8c0"
@@ -21,7 +21,7 @@
         "Id": "a4a7051c-04e3-4f89-a8b7-538fca56d316",
         "Description": "Best flagship mobile device from Xiaomi",
         "Name": "Xiaomi 12T Pro",
-        "MainImageUrl": "images/products/xiaomi12TPro.png",
+        "MainImageUrl": "images/products/xiaomi12TPro.jpg",
         "PriceWithExcludedVAT": 599,
         "ProductStockId": "a9ed6f8f-470d-48f9-871c-64b093429262",
         "ProductTypeId": "9e33b5dc-207d-4e57-b698-b7f889b1b8c0"
@@ -30,7 +30,7 @@
         "Id": "12d2427c-6709-4129-8be9-26ffe28fb944",
         "Description": "Chlamydial infection, unspecified",
         "Name": "Cookies Almond Hazelnut",
-        "MainImageUrl": "images/products/cookies.png",
+        "MainImageUrl": "images/products/cookies.jpg",
         "PriceWithExcludedVAT": 999.9,
         "ProductStockId": "18042163-5fb4-4183-b899-2f7ba5d63292",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -39,7 +39,7 @@
         "Id": "34b4cfcd-3c2f-4f4f-b75b-e4a72dd6fb52",
         "Description": "Path fx in neopltc dis, unsp shldr, subs for fx w routn heal",
         "Name": "Soap - Hand Soap",
-        "MainImageUrl": "images/products/soap.png",
+        "MainImageUrl": "images/products/soap.jpg",
         "PriceWithExcludedVAT": 32.9,
         "ProductStockId": "a5575028-6c7c-4f96-8d98-20f7a72e0b3d",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -49,7 +49,7 @@
         "Id": "04cf6f9f-92b7-4a0b-a54b-8b7def4e7c13",
         "Description": "Ischiocapsular ligament sprain of left hip, sequela",
         "Name": "Sultanas",
-        "MainImageUrl": "images/products/sultanas.png",
+        "MainImageUrl": "images/products/sultanas.jpg",
         "PriceWithExcludedVAT": 43.9,
         "ProductStockId": "a5575028-6c7c-4f96-8d98-20f7a72e0b3d",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -58,7 +58,7 @@
         "Id": "cfe0c348-2a03-4e23-91c4-a71ff8940fbb",
         "Description": "Longitudinal reduction defect of tibia, bilateral",
         "Name": "Chicken - Wings, Tip Off",
-        "MainImageUrl": "images/products/chicken.png",
+        "MainImageUrl": "images/products/chicken.jpg",
         "PriceWithExcludedVAT": 65.9,
         "ProductStockId": "3e2e29f0-4126-48e8-a3d2-f00c8b5bd30e",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -67,7 +67,7 @@
         "Id": "a0b3eda0-40d6-4600-b2e8-7005c30f8b3b",
         "Description": "Fracture of occiput",
         "Name": "Green Tea Refresher",
-        "MainImageUrl": "images/products/green-tea.png",
+        "MainImageUrl": "images/products/green-tea.jpg",
         "PriceWithExcludedVAT": 21.4,
         "ProductStockId": "8d6587be-350c-4be1-afd7-2fbc88e4ff6c",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -76,7 +76,7 @@
         "Id": "c59297fb-9559-45c3-ba8a-f6ed210e9445",
         "Description": "Disp fx of body of right talus, init for clos fx",
         "Name": "Carrots - Jumbo",
-        "MainImageUrl": "images/products/carrots.png",
+        "MainImageUrl": "images/products/carrots.jpg",
         "PriceWithExcludedVAT": 6.70,
         "ProductStockId": "3fd7d0c7-59fc-43d2-a391-082b4bbf7c5b",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -85,7 +85,7 @@
         "Id": "e6791d18-d636-43c0-969e-660d40b25b98",
         "Description": "Nondisp spiral fx shaft of ulna, r arm, 7thF",
         "Name": "Beans - Green",
-        "MainImageUrl": "images/products/beans.png",
+        "MainImageUrl": "images/products/beans.jpg",
         "PriceWithExcludedVAT": 3.4,
         "ProductStockId": "7008798b-c904-409a-9b62-057b8c64e363",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -94,7 +94,7 @@
         "Id": "a1960594-d5c0-4458-a158-5a6bc3f4dec0",
         "Description": "Injury of oth nerves at hip and thigh level, right leg, init",
         "Name": "Ice Cream Bar - Oreo Sandwich",
-        "MainImageUrl": "images/products/ice-cream.png",
+        "MainImageUrl": "images/products/ice-cream.jpg",
         "PriceWithExcludedVAT": 7.89,
         "ProductStockId": "5bbae19e-38a5-4dbd-a568-e9aca7ce1f4f",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -103,7 +103,7 @@
         "Id": "55f14e57-0376-42f4-ac00-166517720479",
         "Description": "Jumping or diving into unspecified water",
         "Name": "Foil Wrap",
-        "MainImageUrl": "images/products/foil-wrap.png",
+        "MainImageUrl": "images/products/foil-wrap.jpg",
         "PriceWithExcludedVAT": 12.4,
         "ProductStockId": "fa365599-e60d-4d47-a728-084bc8a5fce4",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -112,7 +112,7 @@
         "Id": "3025eab8-a5fc-486d-a65e-59619c4cb83b",
         "Description": "Strain intrns musc/fasc/tend r idx fngr at wrs/hnd lv, init",
         "Name": "Rabbit - Whole",
-        "MainImageUrl": "images/products/rabbit.png",
+        "MainImageUrl": "images/products/rabbit.jpg",
         "PriceWithExcludedVAT": 34.4,
         "ProductStockId": "77f39a1f-5171-4f81-9d99-45749355a488",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -121,7 +121,7 @@
         "Id": "ae89e04e-550d-46b7-b506-f21a5fdc007b",
         "Description": "Inj extn musc/fasc/tend l little finger at forarm lv, subs",
         "Name": "Soup - Campbells Chili",
-        "MainImageUrl": "images/products/soup.png",
+        "MainImageUrl": "images/products/soup.jpg",
         "PriceWithExcludedVAT": 11.6,
         "ProductStockId": "0b340d71-a59f-49a3-a7ae-f326bc121c43",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -130,7 +130,7 @@
         "Id": "72d3e604-cae3-4afe-8f9c-c420cd4935e1",
         "Description": "Displ suprcndl fx w intrcndl extn low end l femr, 7thK",
         "Name": "Gin - Gilbeys London, Dry",
-        "MainImageUrl": "images/products/gin.png",
+        "MainImageUrl": "images/products/gin.jpg",
         "PriceWithExcludedVAT": 67.4,
         "ProductStockId": "0b4664aa-59a5-470c-b8d5-32cbb5216733",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -139,7 +139,7 @@
         "Id": "0c208fd6-7f7a-4519-b236-357d860fc2a9",
         "Description": "Calcium deposit in bursa, ankle and foot",
         "Name": "Mangostein",
-        "MainImageUrl": "images/products/mangostein.png",
+        "MainImageUrl": "images/products/mangosteen.jpg",
         "PriceWithExcludedVAT": 2.8,
         "ProductStockId": "27cbbfda-f8db-4cf9-8fc8-7cab254e86bf",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -148,7 +148,7 @@
         "Id": "13e0c9f8-d8b7-40a3-8ab1-40ae7e20670d",
         "Description": "Osteitis deformans in neoplastic diseases, lower leg",
         "Name": "Duck - Whole",
-        "MainImageUrl": "images/products/duck.png",
+        "MainImageUrl": "images/products/duck.jpg",
         "PriceWithExcludedVAT": 45.99,
         "ProductStockId": "bb3e8597-16d8-4cee-bd6c-b914108e2a35",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -157,7 +157,7 @@
         "Id": "314e976b-6546-482d-a978-c19128008927",
         "Description": "Laceration of muscle, fascia and tendon of left hip, subs",
         "Name": "Parsley Italian - Fresh",
-        "MainImageUrl": "images/products/parsley.png",
+        "MainImageUrl": "images/products/parsley.jpg",
         "PriceWithExcludedVAT": 5.4,
         "ProductStockId": "cd2caffa-789a-47af-b0d9-2835057ee3a9",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -165,8 +165,8 @@
     {
         "Id": "1cad5117-8007-4362-ad56-9d1cf90100c7",
         "Description": "Facial nerve disorders",
-        "Name": "Steampan Lid",
-        "MainImageUrl": "images/products/steampan.png",
+        "Name": "Ginger",
+        "MainImageUrl": "images/products/ginger.jpg",
         "PriceWithExcludedVAT": 54.4,
         "ProductStockId": "92feacc3-99e1-4206-9d28-bccef135531d",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -175,7 +175,7 @@
         "Id": "539cd947-28de-40a4-ae6a-6bd98c40085a",
         "Description": "Partial traumatic amputation of unsp great toe, subs encntr",
         "Name": "Wine - Vouvray Cuvee Domaine",
-        "MainImageUrl": "images/products/wine.png",
+        "MainImageUrl": "images/products/wine.jpg",
         "PriceWithExcludedVAT": 102.15,
         "ProductStockId": "a07be68b-2750-4837-8cce-a3145c1389e0",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -183,8 +183,8 @@
     {
         "Id": "a5943308-2b18-4efb-aade-4127f6b4e762",
         "Description": "Complete traumatic amp of left hand at wrist level, sequela",
-        "Name": "Butter Ripple - Phillips",
-        "MainImageUrl": "images/products/butter.png",
+        "Name": "Butter",
+        "MainImageUrl": "images/products/butter.jpg",
         "PriceWithExcludedVAT": 7.99,
         "ProductStockId": "7879367d-c616-4c4b-b1af-7c132766e557",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -193,7 +193,7 @@
         "Id": "87185920-83f7-4edb-9925-312cf166a547",
         "Description": "Luxation of globe, left eye",
         "Name": "Beer - Sleemans Cream Ale",
-        "MainImageUrl": "images/products/beer.png",
+        "MainImageUrl": "images/products/beer.jpg",
         "PriceWithExcludedVAT": 4.4,
         "ProductStockId": "a5092e31-4be1-4b7a-879d-af08d4ac4828",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
@@ -202,7 +202,7 @@
         "Id": "a86548e4-8511-41c3-a00c-ba0279926293",
         "Description": "Other disorders of bone development and growth, unsp humerus",
         "Name": "Beef - Top Sirloin - Aaa",
-        "MainImageUrl": "images/products/beef.png",
+        "MainImageUrl": "images/products/beef.jpg",
         "PriceWithExcludedVAT": 16.39,
         "ProductStockId": "5a4f5646-a4a6-49a5-8857-6ee2213bd339",
         "ProductTypeId": "608c5df4-f1ef-4b3e-b1bd-fe11570de212"
