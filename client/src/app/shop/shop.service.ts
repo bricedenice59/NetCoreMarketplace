@@ -1,6 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IPagination } from '../shared/models/pagination';
+import { IProductType } from '../shared/models/productType';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +12,19 @@ export class ShopService {
 
   constructor(private http: HttpClient) {}
 
-  getProducts() {
-    return this.http.get<IPagination>(this.baseUrl + 'products');
+  public getProducts(productTypeId?: string): Observable<IPagination> {
+    let queryParams = new HttpParams();
+
+    if (productTypeId) {
+      queryParams = queryParams.append('typeId', productTypeId);
+    }
+
+    return this.http.get<IPagination>(this.baseUrl + 'products', {
+      params: queryParams,
+    });
+  }
+
+  getProductTypes(): Observable<IProductType> {
+    return this.http.get<IProductType>(this.baseUrl + 'products/types');
   }
 }

@@ -1,23 +1,20 @@
 <div class="card h-100 box-shadow">
   <img
-    alt="{{ product.imageUrl }}"
-    src="{{ product.name }}"
-    class="image-fluid"
+    alt="{{ product.name }}"
+    src="{{ product.mainImageUrl }}"
+    class="image-fluid bg-light"
   />
   <div class="card-body d-flex flex-column">
     <a href="#">
       <h6 class="text-uppercase">{{ product.name }}</h6>
     </a>
     <span class="mb-2">{{ product.priceWithExcludedVAT | currency }}</span>
-    <p class="card-text">
-      {{ product.description }}
-    </p>
 
     <div class="btn-group mt-auto">
-      <button type="button" class="btn btn-outline-secondary">
+      <button type="button" class="btn btn-outline-secondary mr-2">
         <i class="fa fa-shopping-cart fa-lg"></i>
       </button>
-      <button type="button" class="btn btn-outline-secondary">Edit</button>
+      <button type="button" class="btn btn-outline-secondary">View</button>
     </div>
   </div>
 </div>
