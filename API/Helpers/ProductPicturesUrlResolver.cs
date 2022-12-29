@@ -14,7 +14,7 @@ public class ProductPicturesUrlResolver : IValueResolver<Product, ProductDto, IC
 
     public ICollection<string> Resolve(Product source, ProductDto destination, ICollection<string> destMember, ResolutionContext context)
     {
-        return source.ProductImages
+        return source.ProductImages?
             .Where(x => !string.IsNullOrEmpty(x.Url))
             .Select(s => _config["ApiUrl"] + s.Url)
             .ToList();
