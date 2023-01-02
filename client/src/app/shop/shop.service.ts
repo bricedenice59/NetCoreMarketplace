@@ -12,11 +12,18 @@ export class ShopService {
 
   constructor(private http: HttpClient) {}
 
-  public getProducts(productTypeId?: string): Observable<IPagination> {
+  public getProducts(
+    productTypeId?: string,
+    sortOption?: string
+  ): Observable<IPagination> {
     let queryParams = new HttpParams();
 
     if (productTypeId) {
       queryParams = queryParams.append('typeId', productTypeId);
+    }
+
+    if (sortOption) {
+      queryParams = queryParams.append('sortBy', sortOption);
     }
 
     return this.http.get<IPagination>(this.baseUrl + 'products', {
