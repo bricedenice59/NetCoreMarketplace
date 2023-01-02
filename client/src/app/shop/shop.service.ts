@@ -14,7 +14,8 @@ export class ShopService {
 
   public getProducts(
     productTypeId?: string,
-    sortOption?: string
+    sortOption?: string,
+    pageIndex?: number
   ): Observable<IPagination> {
     let queryParams = new HttpParams();
 
@@ -24,6 +25,10 @@ export class ShopService {
 
     if (sortOption) {
       queryParams = queryParams.append('sortBy', sortOption);
+    }
+
+    if (pageIndex) {
+      queryParams = queryParams.append('pageIndex', pageIndex);
     }
 
     return this.http.get<IPagination>(this.baseUrl + 'products', {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { IPagination } from '../shared/models/pagination';
 import { IProduct } from '../shared/models/product';
 import { IProductType } from '../shared/models/productType';
 import { ShopService } from './shop.service';
@@ -9,6 +10,7 @@ import { ShopService } from './shop.service';
   styleUrls: ['./shop.component.scss'],
 })
 export class ShopComponent implements OnInit {
+  pagination!: IPagination;
   products: IProduct[] = [];
   productTypes: IProductType[] = [];
   productTypeSelected: string | undefined;
@@ -22,6 +24,11 @@ export class ShopComponent implements OnInit {
 
   allItemsName = 'All';
 
+  isPreviousEnabled: Boolean = false;
+  isNextEnabled: Boolean = false;
+  currentPageIndex = 1;
+  pageItemCount = 1;
+
   constructor(private shopService: ShopService) {}
   ngOnInit(): void {
     this.getProducts();
@@ -29,16 +36,24 @@ export class ShopComponent implements OnInit {
   }
 
   getProducts(productTypeId?: string, sortOption?: string) {
+    console.log(this.currentPageIndex);
     this.shopService
       .getProducts(
         this.productTypeSelected === this.allItemsName
           ? undefined
           : productTypeId,
-        sortOption
+        sortOption,
+        this.currentPageIndex
       )
       .subscribe(
-        (response: any) => {
-          this.products = response.data;
+        (response: IPagination) => {
+          this.pagination = response;
+          this.products = this.pagination.data;
+          this.pageItemCount =
+            this.pagination.pageSize == 0
+              ? 1
+              : Math.ceil(this.pagination.count / this.pagination.pageSize);
+          this.updatePaginationUI();
         },
         (error) => {
           console.error(error);
@@ -62,11 +77,40 @@ export class ShopComponent implements OnInit {
 
   onProductTypeSelected(productTypeId: string) {
     this.productTypeSelected = productTypeId;
+    this.resetPagination();
     this.getProducts(productTypeId, this.sortOptionSelected);
   }
 
   onSortSelected(sortOptionSelected: string) {
     this.sortOptionSelected = sortOptionSelected;
     this.getProducts(this.productTypeSelected, sortOptionSelected);
+  }
+
+  loadProductsAtPage(pageIndex: number) {
+    if (pageIndex == this.currentPageIndex) return;
+    this.currentPageIndex = pageIndex;
+    this.getProducts(this.productTypeSelected, this.sortOptionSelected);
+  }
+
+  loadPreviousPrevious() {
+    this.loadProductsAtPage(this.currentPageIndex - 1);
+  }
+
+  loadNextProducts() {
+    this.loadProductsAtPage(this.currentPageIndex + 1);
+  }
+
+  updatePaginationUI() {
+    this.isPreviousEnabled = this.currentPageIndex - 1 != 0;
+    this.isNextEnabled = this.currentPageIndex + 1 <= this.pageItemCount;
+  }
+
+  resetPagination() {
+    this.currentPageIndex = 1;
+    this.pageItemCount = 1;
+  }
+
+  counter(i: number) {
+    return new Array(i);
   }
 }
