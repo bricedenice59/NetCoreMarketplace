@@ -1,0 +1,18 @@
+<nav>
+  <ul class="pagination justify-content-center">
+    <li class="page-item" [class.disabled]="!this.isPreviousEnabled">
+      <a class="page-link" (click)="this.loadPreviousProducts()">Previous</a>
+    </li>
+    <li
+      class="page-item"
+      *ngFor="let in of counter(this.pageItemCount); let i = index"
+    >
+      <a class="page-link" (click)="this.loadProductsAtPage(i + 1)">{{
+        i + 1
+      }}</a>
+    </li>
+    <li class="page-item" [class.disabled]="!this.isNextEnabled">
+      <a class="page-link" (click)="this.loadNextProducts()">Next</a>
+    </li>
+  </ul>
+</nav>

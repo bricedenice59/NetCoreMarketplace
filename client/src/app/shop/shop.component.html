@@ -52,21 +52,10 @@
         </div>
       </div>
     </section>
+
+    <app-pagination
+      [delegate]="this"
+      [pageItemCount]="this.pageItemCount"
+    ></app-pagination>
   </div>
-  <nav>
-    <ul class="pagination justify-content-center">
-      <li class="page-item" [class.disabled]="!this.isPreviousEnabled">
-        <a class="page-link" (click)="this.loadPreviousPrevious()">Previous</a>
-      </li>
-      <li
-        class="page-item"
-        *ngFor="let in of counter(pageItemCount); let i = index"
-      >
-        <a class="page-link" (click)="loadProductsAtPage(i + 1)">{{ i + 1 }}</a>
-      </li>
-      <li class="page-item" [class.disabled]="!this.isNextEnabled">
-        <a class="page-link" (click)="this.loadNextProducts()">Next</a>
-      </li>
-    </ul>
-  </nav>
 </div>

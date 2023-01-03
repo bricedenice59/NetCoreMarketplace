@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { IPagination } from '../shared/models/pagination';
+import { IPaginationDelegate } from '../shared/models/pagination-delegate';
 import { IProduct } from '../shared/models/product';
 import { IProductType } from '../shared/models/productType';
 import { ShopService } from './shop.service';
@@ -9,7 +11,7 @@ import { ShopService } from './shop.service';
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss'],
 })
-export class ShopComponent implements OnInit {
+export class ShopComponent implements OnInit, IPaginationDelegate {
   pagination!: IPagination;
   products: IProduct[] = [];
   productTypes: IProductType[] = [];
@@ -24,25 +26,28 @@ export class ShopComponent implements OnInit {
 
   allItemsName = 'All';
 
-  isPreviousEnabled: Boolean = false;
-  isNextEnabled: Boolean = false;
   currentPageIndex = 1;
   pageItemCount = 1;
 
   constructor(private shopService: ShopService) {}
+
+  loadDataAtPageIndex(pageIndex: number): void {
+    this.currentPageIndex = pageIndex;
+    this.getProducts();
+  }
+
   ngOnInit(): void {
     this.getProducts();
     this.getProductTypes();
   }
 
-  getProducts(productTypeId?: string, sortOption?: string) {
-    console.log(this.currentPageIndex);
+  getProducts() {
     this.shopService
       .getProducts(
         this.productTypeSelected === this.allItemsName
           ? undefined
-          : productTypeId,
-        sortOption,
+          : this.productTypeSelected,
+        this.sortOptionSelected,
         this.currentPageIndex
       )
       .subscribe(
@@ -53,7 +58,6 @@ export class ShopComponent implements OnInit {
             this.pagination.pageSize == 0
               ? 1
               : Math.ceil(this.pagination.count / this.pagination.pageSize);
-          this.updatePaginationUI();
         },
         (error) => {
           console.error(error);
@@ -77,40 +81,13 @@ export class ShopComponent implements OnInit {
 
   onProductTypeSelected(productTypeId: string) {
     this.productTypeSelected = productTypeId;
-    this.resetPagination();
-    this.getProducts(productTypeId, this.sortOptionSelected);
+    this.currentPageIndex = 1;
+    this.pageItemCount = 1;
+    this.getProducts();
   }
 
   onSortSelected(sortOptionSelected: string) {
     this.sortOptionSelected = sortOptionSelected;
-    this.getProducts(this.productTypeSelected, sortOptionSelected);
-  }
-
-  loadProductsAtPage(pageIndex: number) {
-    if (pageIndex == this.currentPageIndex) return;
-    this.currentPageIndex = pageIndex;
-    this.getProducts(this.productTypeSelected, this.sortOptionSelected);
-  }
-
-  loadPreviousPrevious() {
-    this.loadProductsAtPage(this.currentPageIndex - 1);
-  }
-
-  loadNextProducts() {
-    this.loadProductsAtPage(this.currentPageIndex + 1);
-  }
-
-  updatePaginationUI() {
-    this.isPreviousEnabled = this.currentPageIndex - 1 != 0;
-    this.isNextEnabled = this.currentPageIndex + 1 <= this.pageItemCount;
-  }
-
-  resetPagination() {
-    this.currentPageIndex = 1;
-    this.pageItemCount = 1;
-  }
-
-  counter(i: number) {
-    return new Array(i);
+    this.getProducts();
   }
 }
