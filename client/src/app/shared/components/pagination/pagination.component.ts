@@ -9,12 +9,14 @@ import { IPaginationDelegate } from '../../models/pagination-delegate';
 export class PaginationComponent implements OnChanges {
   isPreviousEnabled: Boolean = false;
   isNextEnabled: Boolean = false;
-  currentPageIndex = 1;
+
   @Input() pageItemCount: number;
+  @Input() currentPageIndex: number;
   @Input() delegate: IPaginationDelegate | undefined;
 
   constructor() {
     this.pageItemCount = 1;
+    this.currentPageIndex = 1;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
