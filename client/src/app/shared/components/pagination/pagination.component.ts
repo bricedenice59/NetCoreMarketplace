@@ -1,5 +1,11 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { IPaginationDelegate } from '../../models/pagination-delegate';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-pagination',
@@ -12,21 +18,26 @@ export class PaginationComponent implements OnChanges {
 
   @Input() pageItemCount: number;
   @Input() currentPageIndex: number;
-  @Input() delegate: IPaginationDelegate | undefined;
+  @Output() pageChanged: EventEmitter<number>;
 
   constructor() {
     this.pageItemCount = 1;
     this.currentPageIndex = 1;
+    this.pageChanged = new EventEmitter();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.updatePaginationUI();
   }
 
+  onPageChanged(pageIndex: number) {
+    this.pageChanged.emit(pageIndex);
+  }
+
   loadProductsAtPage(pageIndex: number) {
     if (pageIndex == this.currentPageIndex) return;
     this.currentPageIndex = pageIndex;
-    this.delegate?.loadDataAtPageIndex(pageIndex);
+    this.onPageChanged(pageIndex);
     this.updatePaginationUI();
   }
 

@@ -54,7 +54,7 @@
     </section>
 
     <app-pagination
-      [delegate]="this"
+      (pageChanged)="this.loadDataAtPageIndex($event)"
       [pageItemCount]="this.pageItemCount"
       [currentPageIndex]="this.currentPageIndex"
     ></app-pagination>

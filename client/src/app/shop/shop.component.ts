@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IPagination } from '../shared/models/pagination';
-import { IPaginationDelegate } from '../shared/models/pagination-delegate';
 import { IProduct } from '../shared/models/product';
 import { IProductType } from '../shared/models/productType';
 import { ShopParams } from '../shared/models/shopParams';
@@ -11,7 +10,7 @@ import { ShopService } from './shop.service';
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss'],
 })
-export class ShopComponent implements OnInit, IPaginationDelegate {
+export class ShopComponent implements OnInit {
   pagination: IPagination | undefined;
   products: IProduct[] = [];
   productTypes: IProductType[] = [];
