@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IPagination } from '../shared/models/pagination';
 import { IProductType } from '../shared/models/productType';
+import { ShopParams } from '../shared/models/shopParams';
 
 @Injectable({
   providedIn: 'root',
@@ -12,23 +13,23 @@ export class ShopService {
 
   constructor(private http: HttpClient) {}
 
-  public getProducts(
-    productTypeId?: string,
-    sortOption?: string,
-    pageIndex?: number
-  ): Observable<IPagination> {
+  public getProducts(shopParams: ShopParams): Observable<IPagination> {
     let queryParams = new HttpParams();
 
-    if (productTypeId) {
-      queryParams = queryParams.append('typeId', productTypeId);
+    if (shopParams.productTypeId) {
+      queryParams = queryParams.append('typeId', shopParams.productTypeId);
     }
 
-    if (sortOption) {
-      queryParams = queryParams.append('sortBy', sortOption);
+    if (shopParams.sortOption) {
+      queryParams = queryParams.append('sortBy', shopParams.sortOption);
     }
 
-    if (pageIndex) {
-      queryParams = queryParams.append('pageIndex', pageIndex);
+    if (shopParams.pageIndex) {
+      queryParams = queryParams.append('pageIndex', shopParams.pageIndex);
+    }
+
+    if (shopParams.pageSize) {
+      queryParams = queryParams.append('pageSize', shopParams.pageSize);
     }
 
     return this.http.get<IPagination>(this.baseUrl + 'products', {

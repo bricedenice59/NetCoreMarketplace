@@ -3,6 +3,7 @@ import { IPagination } from '../shared/models/pagination';
 import { IPaginationDelegate } from '../shared/models/pagination-delegate';
 import { IProduct } from '../shared/models/product';
 import { IProductType } from '../shared/models/productType';
+import { ShopParams } from '../shared/models/shopParams';
 import { ShopService } from './shop.service';
 
 @Component({
@@ -28,6 +29,8 @@ export class ShopComponent implements OnInit, IPaginationDelegate {
   currentPageIndex = 1;
   pageItemCount = 1;
 
+  shopParams = new ShopParams();
+
   constructor(private shopService: ShopService) {}
 
   loadDataAtPageIndex(pageIndex: number): void {
@@ -41,27 +44,20 @@ export class ShopComponent implements OnInit, IPaginationDelegate {
   }
 
   getProducts() {
-    this.shopService
-      .getProducts(
-        this.productTypeSelected === this.allItemsName
-          ? undefined
-          : this.productTypeSelected,
-        this.sortOptionSelected,
-        this.currentPageIndex
-      )
-      .subscribe(
-        (response: IPagination) => {
-          this.pagination = response;
-          this.products = this.pagination.data;
-          this.pageItemCount =
-            this.pagination.pageSize == 0
-              ? 1
-              : Math.ceil(this.pagination.count / this.pagination.pageSize);
-        },
-        (error) => {
-          console.error(error);
-        }
-      );
+    this.feedShopParams();
+    this.shopService.getProducts(this.shopParams).subscribe(
+      (response: IPagination) => {
+        this.pagination = response;
+        this.products = this.pagination.data;
+        this.pageItemCount =
+          this.pagination.pageSize == 0
+            ? 1
+            : Math.ceil(this.pagination.count / this.pagination.pageSize);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   getProductTypes() {
@@ -88,5 +84,16 @@ export class ShopComponent implements OnInit, IPaginationDelegate {
   onSortSelected(sortOptionSelected: string) {
     this.sortOptionSelected = sortOptionSelected;
     this.getProducts();
+  }
+
+  feedShopParams() {
+    if (this.shopParams.productTypeId === this.allItemsName) {
+      this.shopParams.productTypeId = undefined;
+    } else {
+      this.shopParams.productTypeId = this.productTypeSelected;
+    }
+
+    this.shopParams.sortOption = this.sortOptionSelected;
+    this.shopParams.pageIndex = this.currentPageIndex;
   }
 }
