@@ -87,7 +87,7 @@ export class ShopComponent implements OnInit, IPaginationDelegate {
   }
 
   feedShopParams() {
-    if (this.shopParams.productTypeId === this.allItemsName) {
+    if (this.productTypeSelected === this.allItemsName) {
       this.shopParams.productTypeId = undefined;
     } else {
       this.shopParams.productTypeId = this.productTypeSelected;
