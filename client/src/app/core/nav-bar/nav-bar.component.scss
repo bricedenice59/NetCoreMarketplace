@@ -1,11 +1,16 @@
 a {
+  text-decoration: none;
   font-size: 1.1rem;
-  color: #343a40;
+  color: #04080b;
+
+  &.active {
+    color: #2609e4;
+  }
 }
 
 a.cart:hover {
   text-decoration: none;
-  color: #d60e96;
+  color: #28031c;
 }
 
 a.cart .cart-basket {
