@@ -39,10 +39,22 @@
             type="text"
             class="form-control mr-2"
             style="width: 300px"
+            #searchInput
             placeholder="Search"
+            (keyup.enter)="this.onSearchCriteriaChanged()"
           />
-          <button class="btn btn-outline-primary my-2">Search</button>
-          <button class="btn btn-outline-success my-2 ml-2">Reset</button>
+          <button
+            class="btn btn-outline-primary my-2"
+            (click)="this.onSearchCriteriaChanged()"
+          >
+            Search
+          </button>
+          <button
+            class="btn btn-outline-success my-2 ml-2"
+            (click)="this.onReset()"
+          >
+            Reset
+          </button>
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { IPagination } from '../shared/models/pagination';
 import { IProduct } from '../shared/models/product';
 import { IProductType } from '../shared/models/productType';
@@ -29,6 +29,7 @@ export class ShopComponent implements OnInit {
   pageItemCount = 1;
 
   shopParams = new ShopParams();
+  @ViewChild('searchInput', { static: true }) searchTerm!: ElementRef;
 
   constructor(private shopService: ShopService) {}
 
@@ -94,5 +95,16 @@ export class ShopComponent implements OnInit {
 
     this.shopParams.sortOption = this.sortOptionSelected;
     this.shopParams.pageIndex = this.currentPageIndex;
+  }
+
+  onSearchCriteriaChanged() {
+    this.shopParams.searchCriteria = this.searchTerm.nativeElement.value;
+    this.getProducts();
+  }
+
+  onReset() {
+    this.searchTerm.nativeElement.value = '';
+    this.shopParams = new ShopParams();
+    this.getProducts();
   }
 }

@@ -16,6 +16,13 @@ export class ShopService {
   public getProducts(shopParams: ShopParams): Observable<IPagination> {
     let queryParams = new HttpParams();
 
+    if (shopParams.searchCriteria) {
+      queryParams = queryParams.append(
+        'searchCriteria',
+        shopParams.searchCriteria
+      );
+    }
+
     if (shopParams.productTypeId) {
       queryParams = queryParams.append('typeId', shopParams.productTypeId);
     }
