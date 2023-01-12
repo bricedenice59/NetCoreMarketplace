@@ -4,30 +4,45 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HttpErrorResponse,
 } from '@angular/common/http';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private toastr: ToastrService) {}
 
   intercept(
-    request: HttpRequest<unknown>,
+    request: HttpRequest<any>,
     next: HttpHandler
-  ): Observable<HttpEvent<unknown>> {
+  ): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
-      catchError((error) => {
-        if (error) {
-          if (error.status === 400) {
-          } else if (error.status === 401) {
-          } else if (error.status === 404) {
+      catchError((nextError: HttpErrorResponse) => {
+        if (nextError) {
+          if (nextError.status === 400) {
+            if (nextError.error.errors) {
+              throw nextError.error;
+            } else {
+              this.toastr.error(
+                nextError.error.message,
+                nextError.error.statusCode
+              );
+            }
+          } else if (nextError.status === 401) {
+            this.toastr.error(
+              nextError.error.message,
+              nextError.status.toString()
+            );
+          } else if (nextError.status === 404) {
             this.router.navigateByUrl('/notfound-error');
-          } else if (error.status === 500) {
+          } else if (nextError.status === 500) {
             this.router.navigateByUrl('/server-error');
           }
+          return throwError(() => new Error(nextError.message));
         }
-        return throwError(error);
+        return throwError(nextError);
       })
     );
   }
