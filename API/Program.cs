@@ -5,6 +5,7 @@ using Infrastructure;
 using Infrastructure.Data;
 using Infrastructure.SeedData;
 using Microsoft.EntityFrameworkCore;
+using StackExchange.Redis;
 
 const string corsPolicy = "CorsPolicy";
 
@@ -13,6 +14,7 @@ var configuration = builder.Configuration;
 
 // Add services to the container.
 builder.Services.AddScoped(typeof(IGenericRepository<>),(typeof(GenericRepository<>)));
+builder.Services.AddScoped(typeof(IBasketRepository),(typeof(BasketRepository)));
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -22,6 +24,12 @@ builder.Services.AddSwaggerGen();
 // Add Application Db Context options
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(conf =>
+{
+    var config = ConfigurationOptions.Parse(configuration.GetConnectionString("Redis"), true);
+    return ConnectionMultiplexer.Connect(config);
+});
 
 builder.Services.AddCors(options => 
     options.AddPolicy(corsPolicy, 
