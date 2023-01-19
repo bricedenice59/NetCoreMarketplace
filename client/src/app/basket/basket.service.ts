@@ -83,4 +83,57 @@ export class BasketService {
       productType: item.productType,
     };
   }
+
+  incrementItemQuantity(item: IBasketItem) {
+    const basket = this.getCurrentBasketValue();
+    if (basket) {
+      const foundItemIndex = basket.items.findIndex((x) => x.id === item.id);
+      basket.items[foundItemIndex].quantity++;
+      this.setBasket(basket);
+    }
+  }
+
+  decrementItemQuantity(item: IBasketItem) {
+    const basket = this.getCurrentBasketValue();
+    if (basket) {
+      const foundItemIndex = basket.items.findIndex((x) => x.id === item.id);
+      if (basket.items[foundItemIndex].quantity > 1) {
+        basket.items[foundItemIndex].quantity--;
+        this.setBasket(basket);
+      } else {
+        this.removeItemFromBasket(item);
+      }
+    }
+  }
+
+  removeItemFromBasket(item: IBasketItem) {
+    const basket = this.getCurrentBasketValue();
+    if (basket) {
+      if (basket.items.some((x) => x.id === item.id)) {
+        basket.items = basket.items.filter((i) => i.id !== item.id);
+        if (basket.items.length > 0) {
+          this.setBasket(basket);
+        } else {
+          this.deleteBasket(basket);
+        }
+      }
+    }
+  }
+
+  deleteLocalBasket(id: string) {
+    this.basketSource.next(null);
+    localStorage.removeItem('basket_id');
+  }
+
+  deleteBasket(basket: IBasket) {
+    return this.http.delete(this.baseUrl + 'basket?id=' + basket.id).subscribe(
+      () => {
+        this.basketSource.next(null);
+        localStorage.removeItem('basket_id');
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 }
