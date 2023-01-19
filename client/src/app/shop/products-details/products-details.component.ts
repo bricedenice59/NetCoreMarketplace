@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { BasketService } from 'src/app/basket/basket.service';
 import { IProduct } from 'src/app/shared/models/product';
 import { ShopService } from 'src/app/shop/shop.service';
 
@@ -9,11 +10,12 @@ import { ShopService } from 'src/app/shop/shop.service';
   styleUrls: ['./products-details.component.scss'],
 })
 export class ProductsDetailsComponent implements OnInit {
-  product: IProduct | undefined;
+  product!: IProduct;
 
   constructor(
     private shopService: ShopService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private basketService: BasketService
   ) {}
 
   ngOnInit(): void {
@@ -31,5 +33,10 @@ export class ProductsDetailsComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  addItemToBasket() {
+    console.log(this.product);
+    this.basketService.addItemToBasket(this.product);
   }
 }

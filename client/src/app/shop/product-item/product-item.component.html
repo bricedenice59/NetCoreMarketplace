@@ -11,7 +11,11 @@
     <span class="mb-2">{{ product.priceWithExcludedVAT | currency }}</span>
 
     <div class="btn-group mt-auto">
-      <button type="button" class="btn btn-outline-secondary mr-2">
+      <button
+        class="btn btn-outline-secondary mr-2"
+        (click)="addItemToBasket()"
+        type="button"
+      >
         <i class="fa fa-shopping-cart fa-lg"></i>
       </button>
       <button
