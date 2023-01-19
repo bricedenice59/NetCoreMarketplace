@@ -30,9 +30,10 @@
       >
         <i class="fas fa fa-shopping-cart fa-lg"></i>
         <span
+          *ngIf="basket$ | async as basket"
           class="cart-basket d-flex align-items-center justify-content-center"
         >
-          0
+          {{ basket.items.length }}
         </span>
       </a>
       <button type="button" class="btn btn-outline-primary me-2">Login</button>

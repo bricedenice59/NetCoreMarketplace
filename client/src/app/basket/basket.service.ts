@@ -46,13 +46,12 @@ export class BasketService {
     );
     const basket = this.getCurrentBasketValue() ?? this.createBasket();
     basket.items = this.addOrUpdateItem(basket.items, itemToAdd, quantity);
-    console.log(basket);
     this.setBasket(basket);
   }
 
   private createBasket(): IBasket {
     const basket = new Basket();
-    localStorage.setItem('basket_id', basket.id);
+    localStorage.setItem(environments.basketNameLocalStorage, basket.id);
     return basket;
   }
 
