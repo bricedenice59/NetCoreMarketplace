@@ -11,21 +11,32 @@ import { ShopService } from 'src/app/shop/shop.service';
 })
 export class ProductsDetailsComponent implements OnInit {
   product!: IProduct;
+  quantity: number;
 
   constructor(
     private shopService: ShopService,
     private activatedRoute: ActivatedRoute,
     private basketService: BasketService
-  ) {}
-
-  ngOnInit(): void {
-    this.loadProduct();
+  ) {
+    this.quantity = 0;
   }
 
-  loadProduct() {
-    let param = this.activatedRoute.snapshot.paramMap.get('id');
-    if (!param) return;
-    this.shopService.getProduct(param).subscribe(
+  ngOnInit(): void {
+    let id = this.activatedRoute.snapshot.paramMap.get('id');
+    if (!id) return;
+
+    this.loadProduct(id);
+    this.basketService.basket$.subscribe((value) => {
+      const item = value?.items.find((y) => y.id === id);
+      if (item) {
+        this.quantity = item.quantity;
+      } else this.quantity = 1;
+    });
+  }
+
+  loadProduct(id: string) {
+    if (!id) return;
+    this.shopService.getProduct(id).subscribe(
       (response) => {
         this.product = response;
       },
@@ -36,6 +47,15 @@ export class ProductsDetailsComponent implements OnInit {
   }
 
   addItemToBasket() {
-    this.basketService.addItemToBasket(this.product);
+    this.basketService.addItemToBasket(this.product, this.quantity);
+  }
+
+  incrementQuantity() {
+    this.quantity += 1;
+  }
+
+  decrementQuantity() {
+    if (this.quantity === 0) return;
+    this.quantity -= 1;
   }
 }
