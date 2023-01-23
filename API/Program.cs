@@ -1,9 +1,13 @@
+using API.Extensions;
 using API.Helpers;
 using API.Middlewares;
 using Core.Interfaces;
+using Core.Models.Identity;
 using Infrastructure;
 using Infrastructure.Data;
+using Infrastructure.Identity;
 using Infrastructure.SeedData;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StackExchange.Redis;
 
@@ -23,13 +27,18 @@ builder.Services.AddSwaggerGen();
 
 // Add Application Db Context options
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlite(configuration.GetConnectionString("MarketplaceDbDefaultConnection")));
+
+builder.Services.AddDbContext<AppIdentityDbContext>(options =>
+    options.UseSqlite(configuration.GetConnectionString("UserDbDefaultConnection")));
 
 builder.Services.AddSingleton<IConnectionMultiplexer>(conf =>
 {
     var config = ConfigurationOptions.Parse(configuration.GetConnectionString("Redis"), true);
     return ConnectionMultiplexer.Connect(config);
 });
+
+builder.Services.AddIdentityServices(configuration);
 
 builder.Services.AddCors(options => 
     options.AddPolicy(corsPolicy, 
@@ -46,6 +55,11 @@ using (var scope = app.Services.CreateScope())
         var context = services.GetRequiredService<ApplicationDbContext>();
         await context.Database.MigrateAsync();
         await StoreContextSeed.SeedAsync(context, loggerFactory);
+
+        var userManager = services.GetRequiredService<UserManager<User>>();
+        var identityContext = services.GetRequiredService<AppIdentityDbContext>();
+        await identityContext.Database.MigrateAsync();
+        await AppIdentityDbContextSeed.SeedAsync(userManager);
     }
     catch (Exception ex)
     {
