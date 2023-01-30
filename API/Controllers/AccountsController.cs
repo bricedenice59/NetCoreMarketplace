@@ -19,7 +19,7 @@ public class AccountsController : BaseApiController
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult<UserIdentityDto>> Login(LoginDto loginData)
+    public async Task<ActionResult<UserIdentityDto>> Login(UserLoginDto loginData)
     {
         var user = await _userManager.FindByEmailAsync(loginData.Email);
         if (user == null)
@@ -30,5 +30,22 @@ public class AccountsController : BaseApiController
             return Unauthorized(new ApiResponse(401));
 
         return new UserIdentityDto { Email = loginData.Email, FirstName = user.DisplayName, Token = "" };
+    }
+
+    [HttpPost("register")]
+    public async Task<ActionResult<UserIdentityDto>> Register(UserRegisterDto registerData)
+    {
+        var user = new User
+        {
+            DisplayName = registerData.DisplayName,
+            UserName = registerData.DisplayName,
+            Email = registerData.Email
+        };
+
+        var registerResult = await _userManager.CreateAsync(user, registerData.Password);
+        if (!registerResult.Succeeded)
+            return BadRequest(new ApiResponse(400));
+        
+        return new UserIdentityDto { Email = registerData.Email, FirstName = user.DisplayName, Token = "" };
     }
 }
