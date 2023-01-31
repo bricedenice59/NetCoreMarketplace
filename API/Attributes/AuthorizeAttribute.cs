@@ -1,3 +1,4 @@
+using API.Errors;
 using Core.Models.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,6 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
 
         // authorization
         if (context.HttpContext.Items["User"] == null)
-            context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            context.Result = new JsonResult(new ApiResponse(StatusCodes.Status401Unauthorized, "Unauthorized"));
     }
 }

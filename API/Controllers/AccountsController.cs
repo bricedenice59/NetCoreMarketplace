@@ -50,6 +50,9 @@ public class AccountsController : BaseApiController
     [HttpPost("register")]
     public async Task<ActionResult<UserIdentityDto>> Register(UserRegisterDto registerData)
     {
+        if (await _userManager.FindByEmailAsync(registerData.Email) != null)
+            return new BadRequestObjectResult(new ApiResponse (400, "Email address is in use"));
+        
         var user = new User
         {
             DisplayName = registerData.DisplayName,
@@ -66,6 +69,21 @@ public class AccountsController : BaseApiController
             Email = registerData.Email,
             FirstName = user.DisplayName, 
             Token = _tokenService.CreateToken(user)
+        };
+    }
+    
+    [API.Attributes.Authorize]
+    [HttpGet]
+    public ActionResult<UserIdentityDto> GetCurrentUser()
+    {
+        var context = HttpContext;
+        var user = context.Items["User"] as User;
+
+        return new UserIdentityDto
+        {
+            Email = user!.Email,
+            Token = _tokenService.CreateToken(user),
+            FirstName = user!.DisplayName
         };
     }
 }

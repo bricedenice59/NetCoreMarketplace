@@ -13,6 +13,13 @@ public class BuggyController : BaseApiController
         _dbContext = dbContext;
     }
     
+    [HttpGet("testauth")]
+    [API.Attributes.Authorize]
+    public ActionResult<string> GetSecretText()
+    {
+        return "secret stuff";
+    }
+    
     [HttpGet("notFound")]
     public async Task<ActionResult> NotFoundRequest()
     {
