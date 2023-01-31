@@ -25,6 +25,7 @@ public class ProductsController : BaseApiController
     }
     
     [HttpGet]
+    [API.Attributes.Authorize]
     public async Task<ActionResult<Pagination<ProductDto>>> GetAllProducts([FromQuery]ProductSpecParams productParams)
     {
         var productsSpec = new ProductWithTypeAndStockSpecification(productParams);
@@ -37,6 +38,7 @@ public class ProductsController : BaseApiController
     }
 
     [HttpGet("{id}")]
+    [API.Attributes.Authorize]
     public async Task<ActionResult<ProductDto>> GetProduct(Guid id)
     {
         var productSpec = new ProductWithTypeAndStockSpecification(id);
@@ -48,6 +50,7 @@ public class ProductsController : BaseApiController
     }
     
     [HttpGet("types")]
+    [API.Attributes.Authorize]
     public async Task<ActionResult<ProductType>> GetAllProductTypes()
     {
         var productsTypes = await _productTypeRepository.ListAllAsync();
@@ -55,6 +58,7 @@ public class ProductsController : BaseApiController
     }
     
     [HttpGet("stocks/{id}")]
+    [API.Attributes.Authorize]
     public async Task<ActionResult<int?>> GetProductStockById(Guid id)
     {
         var pStockSpec = new ProductStockSpecification(id);

@@ -7,6 +7,7 @@ using Infrastructure;
 using Infrastructure.Data;
 using Infrastructure.Identity;
 using Infrastructure.SeedData;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StackExchange.Redis;
@@ -19,6 +20,7 @@ var configuration = builder.Configuration;
 // Add services to the container.
 builder.Services.AddScoped(typeof(IGenericRepository<>),(typeof(GenericRepository<>)));
 builder.Services.AddScoped(typeof(IBasketRepository),(typeof(BasketRepository)));
+builder.Services.AddScoped<ITokenService,TokenService>();
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -69,6 +71,7 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.UseMiddleware<ExceptionMiddleware>();
+app.UseMiddleware<JwtTokensMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -85,6 +88,7 @@ app.UseCors(corsPolicy);
 app.UseStaticFiles();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllers();
 

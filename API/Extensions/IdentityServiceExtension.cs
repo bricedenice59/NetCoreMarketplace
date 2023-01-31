@@ -1,7 +1,9 @@
+using System.Text;
 using Core.Models.Identity;
 using Infrastructure.Identity;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-
+using Microsoft.IdentityModel.Tokens;
 namespace API.Extensions;
 
 public static class IdentityServiceExtensions
@@ -31,13 +33,28 @@ public static class IdentityServiceExtensions
  
             // User settings 
             opt.User.RequireUniqueEmail = true;
- 
-            //Token Option
-            //opt.Tokens.AuthenticatorTokenProvider = "Name of AuthenticatorTokenProvider";
- 
         });
+        
+        if (config["Auth0:Secret"] == null)
+            throw new ArgumentNullException("Setting is missing: Auth0:Secret");
+        if (config["Auth0:TokenExpirationDelay"] == null)
+            throw new ArgumentNullException("Setting is missing: Auth0:TokenExpirationDelay");
+        if (config["Auth0:Issuer"] == null)
+            throw new ArgumentNullException("Setting is missing: Auth0:Issuer");
+        
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Auth0:Secret"])),
+                    ValidIssuer = config["Auth0:Issuer"],
+                    ValidateIssuer = true,
+                    ValidateAudience = false
+                };
+            });
 
-        services.AddAuthentication();
         return services;
     }
 }
