@@ -1,19 +1,27 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Core.Models.Identity;
+namespace API.Dtos;
 
-
-public class UserAddress
+public class UserAddressDto
 {
+    [Required]
     public string Id { get; set; }
+    
+    [Required]
     public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string Street { get; set; }
-    public string City { get; set; }
-    public string State { get; set; }
-    public string ZipCode { get; set; }
 
     [Required]
-    public string AppUserId { get; set; }
-    public User AppUser { get; set; }
+    public string LastName { get; set; }
+
+    [Required]
+    public string Street { get; set; }
+
+    [Required]
+    public string City { get; set; }
+
+    [Required]
+    public string State { get; set; }
+
+    [Required] 
+    public string Zipcode { get; set; }
 }

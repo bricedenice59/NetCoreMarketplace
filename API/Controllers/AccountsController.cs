@@ -1,10 +1,12 @@
 using API.Dtos;
 using API.Errors;
+using AutoMapper;
 using Core.Interfaces;
 using Core.Models.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers;
 
@@ -13,14 +15,17 @@ public class AccountsController : BaseApiController
     private readonly UserManager<User> _userManager;
     private readonly SignInManager<User> _signInManager;
     private readonly ITokenService _tokenService;
+    private readonly IMapper _mapper;
     
     public AccountsController(UserManager<User> userManager,
         SignInManager<User> signInManager,
-        ITokenService tokenService)
+        ITokenService tokenService,
+        IMapper mapper)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _tokenService = tokenService;
+        _mapper = mapper;
     }
 
     [AllowAnonymous]
@@ -85,5 +90,48 @@ public class AccountsController : BaseApiController
             Token = _tokenService.CreateToken(user),
             FirstName = user!.DisplayName
         };
+    }
+    
+    [HttpGet("emailexists")]
+    public async Task<ActionResult<bool>> CheckEmailExistsAsync([FromQuery] string email)
+    {
+        return await _userManager.FindByEmailAsync(email) != null;
+    }
+
+    [API.Attributes.Authorize]
+    [HttpGet("address")]
+    public async Task<ActionResult<UserAddressDto>> GetUserAddress()
+    {
+        var context = HttpContext;
+        var userFromContext = context.Items["User"] as User;
+        
+        var user =  await _userManager.Users.Include(x => x.Address)
+            .SingleOrDefaultAsync(x => x.Email == userFromContext.Email);
+
+        if(user == null)
+            return NotFound(new ApiResponse(401));
+        
+        return _mapper.Map<UserAddress, UserAddressDto>(user.Address);
+    }
+
+    [API.Attributes.Authorize]
+    [HttpPut("address")]
+    public async Task<ActionResult<UserAddressDto>> UpdateUserAddress(UserAddressDto address)
+    {
+        var context = HttpContext;
+        var userFromContext = context.Items["User"] as User;
+        var user =  await _userManager.Users.Include(x => x.Address)
+            .SingleOrDefaultAsync(x => x.Email == userFromContext.Email);
+        
+        if(user == null)
+            return NotFound(new ApiResponse(401));
+        
+        user.Address = _mapper.Map<UserAddressDto, UserAddress>(address);
+
+        var result = await _userManager.UpdateAsync(user);
+
+        if (result.Succeeded) return Ok(_mapper.Map<UserAddressDto>(user.Address));
+
+        return BadRequest("Problem updating the user");
     }
 }

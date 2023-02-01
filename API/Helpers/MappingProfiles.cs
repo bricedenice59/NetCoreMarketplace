@@ -15,5 +15,7 @@ public class MappingProfiles : Profile
             .ForMember(d => d.MainImageUrl, o => o.MapFrom<ProductUrlResolver>())
             .ForMember(d => d.ProductImages, o => o.MapFrom<ProductPicturesUrlResolver>())
             ;
+        
+        CreateMap<Core.Models.Identity.UserAddress, UserAddressDto>().ReverseMap();
     }
 }
