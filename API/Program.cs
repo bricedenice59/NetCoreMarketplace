@@ -29,10 +29,10 @@ builder.Services.AddSwaggerGen();
 
 // Add Application Db Context options
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlite(configuration.GetConnectionString("MarketplaceDbDefaultConnection")));
+    options.UseNpgsql(configuration.GetConnectionString("MarketplaceDbDefaultConnection")));
 
 builder.Services.AddDbContext<AppIdentityDbContext>(options =>
-    options.UseSqlite(configuration.GetConnectionString("UserDbDefaultConnection")));
+    options.UseNpgsql(configuration.GetConnectionString("UserDbDefaultConnection")));
 
 builder.Services.AddSingleton<IConnectionMultiplexer>(conf =>
 {

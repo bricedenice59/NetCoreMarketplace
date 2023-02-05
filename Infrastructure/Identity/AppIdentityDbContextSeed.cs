@@ -19,6 +19,7 @@ public class AppIdentityDbContextSeed
                 UserName = "bob@test.com",
                 Address = new UserAddress
                 {
+                    Id = Guid.NewGuid().ToString(),
                     FirstName = "Bob",
                     LastName = "Bobbity",
                     Street = "10 The street",
