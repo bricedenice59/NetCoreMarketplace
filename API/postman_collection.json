@@ -662,7 +662,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": \"fac2f8cc-c871-4e3d-acaa-a4f61fe03c87\",\n  \"items\": [\n    {\n      \"id\": \"3025eab8-a5fc-486d-a65e-59619c4cb83b\",\n      \"productName\": \".NET Black & White Mug\",\n      \"price\": 8.22,\n      \"quantity\": 32,\n      \"pictureUrl\": \"https://localhost:5001/images/products/2.png\",\n      \"productType\": \"USB Memory Stick\"\n    }\n  ]\n}",
+							"raw": "{\n  \"id\": \"fac2f8cc-c871-4e3d-acaa-a4f61fe03c87\",\n  \"items\": [\n    {\n      \"id\": \"3025eab8-a5fc-486d-a65e-59619c4cb83b\",\n      \"productName\": \".NET Black & White Mug\",\n      \"price\": 8.22,\n      \"quantity\": 32,\n      \"pictureUrl\": \"https://localhost:5001/images/products/2.png\",\n      \"productType\": \"USB Memory Stick11\"\n    }\n  ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -870,38 +870,9 @@
 				},
 				{
 					"name": "Login as Tom and save token to env",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"const user = pm.response.json();",
-									"",
-									"pm.test(\"Has properties\", function () {",
-									"    pm.expect(user).to.have.property('displayName');",
-									"    pm.expect(user).to.have.property('email');",
-									"    pm.expect(user).to.have.property('token');",
-									"});",
-									"",
-									"if (pm.test(\"Has properties\")) {",
-									"    pm.globals.set('tom_token', user.token);",
-									"}",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
 					"request": {
 						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": "{\n\t\"email\": \"tom@test.com\",\n\t\"password\": \"Pa$$w0rd!!\"\n}",
@@ -1250,7 +1221,7 @@
 				{
 					"name": "Update User Address (tom) - Empty Address",
 					"request": {
-						"method": "POST",
+						"method": "PUT",
 						"header": [
 							{
 								"key": "Content-Type",
@@ -1274,13 +1245,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/api/account/address",
+							"raw": "https://localhost:7120/api/Accounts/address",
+							"protocol": "https",
 							"host": [
-								"{{url}}"
+								"localhost"
 							],
+							"port": "7120",
 							"path": [
 								"api",
-								"account",
+								"Accounts",
 								"address"
 							]
 						}
@@ -1331,13 +1304,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/api/account/register",
+							"raw": "https://localhost:7120/api/Accounts/register",
+							"protocol": "https",
 							"host": [
-								"{{url}}"
+								"localhost"
 							],
+							"port": "7120",
 							"path": [
 								"api",
-								"account",
+								"Accounts",
 								"register"
 							]
 						}
@@ -1388,13 +1363,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/api/account/register",
+							"raw": "https://localhost:7120/api/Accounts/register",
+							"protocol": "https",
 							"host": [
-								"{{url}}"
+								"localhost"
 							],
+							"port": "7120",
 							"path": [
 								"api",
-								"account",
+								"Accounts",
 								"register"
 							]
 						}
@@ -1437,7 +1414,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"displayName\": \"\",\n\t\"email\": \"notanemail\",\n\t\"password\": \"Pa$$w0rd\"\n}",
+							"raw": "{\n\t\"displayName\": \"dfsdf\",\n\t\"email\": \"nota@nemail.com\",\n\t\"password\": \"Pa$$w0rd\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1445,13 +1422,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/api/account/register",
+							"raw": "https://localhost:7120/api/Accounts/register",
+							"protocol": "https",
 							"host": [
-								"{{url}}"
+								"localhost"
 							],
+							"port": "7120",
 							"path": [
 								"api",
-								"account",
+								"Accounts",
 								"register"
 							]
 						}
@@ -1472,7 +1451,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"id\": \"basket1\",\n  \"basketItems\": [\n    {\n      \"id\": 4,\n      \"productName\": \".NET Black & White Mug\",\n      \"price\": 0,\n      \"quantity\": 0,\n      \"pictureUrl\": \"https://localhost:5001/images/products/2.png\",\n      \"brand\": \".NET\",\n      \"type\": \"USB Memory Stick\"\n    }\n  ]\n}",
+							"raw": "{\n  \"id\": \"82125136-f331-420b-a958-874f91eef7fd\",\n  \"Items\": [\n    {\n      \"id\": \"82125136-f331-420b-a958-874f91eef7fd\",\n      \"productName\": \".NET Black & White Mug\",\n      \"price\": 1,\n      \"quantity\": 1,\n      \"pictureUrl\": \"https://localhost:5001/images/products/2.png\",\n      \"producttype\": \"USB Memory Stick\"\n    }\n  ]\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1480,13 +1459,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/api/basket",
+							"raw": "https://localhost:7120/api/basket/",
+							"protocol": "https",
 							"host": [
-								"{{url}}"
+								"localhost"
 							],
+							"port": "7120",
 							"path": [
 								"api",
-								"basket"
+								"basket",
+								""
 							]
 						}
 					},

@@ -17,5 +17,7 @@ public class MappingProfiles : Profile
             ;
         
         CreateMap<Core.Models.Identity.UserAddress, UserAddressDto>().ReverseMap();
+        CreateMap<CustomerBasketDto, CustomerBasket>();
+        CreateMap<BasketItemDto, BasketItem>();
     }
 }
