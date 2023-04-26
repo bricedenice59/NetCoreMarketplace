@@ -25,4 +25,11 @@
       <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.26.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Remove="SeedData\ProductTypes.json" />
+      <Content Include="SeedData\ProductTypes.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
 </Project>
