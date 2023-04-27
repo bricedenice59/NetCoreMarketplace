@@ -6,26 +6,27 @@ using FluentAssertions;
 
 namespace Api.Tests.Integration.MarketplaceControllers;
 
-public class ProductControllerTests : IntegrationTest
+[Collection("integrationTest collection")]
+public class ProductTypesControllerTests
 {
+    IntegrationTestFixture _fixture;
+
+    public ProductTypesControllerTests(IntegrationTestFixture fixture)
+    {
+        this._fixture = fixture;
+    }
+    
     [Fact]
     public async Task GET_checkProductType_EndpointOK()
     {
-       
-        var response = await _client.GetAsync("api/Products/types");
+        var response = await _fixture.Client.GetAsync("api/Products/types");
         response.StatusCode.Should().Be(HttpStatusCode.OK);
     }
     
     [Fact]
     public async Task GET_checkProductTypeCount()
     {
-        var response = await _client.GetAsync("api/Products/types");
-
-        // var productTypes = JsonConvert.DeserializeObject<ProductType[]>(
-        //     await response.Content.ReadAsStringAsync()
-        // );
-        
-         var productTypes = await _client.GetAndDeserialize<ProductType[]>("api/Products/types");
-         productTypes.Should().HaveCount(3);
+         var productTypes = await _fixture.Client.GetAndDeserialize<ProductType[]>("api/Products/types");
+         productTypes.Should().HaveCount(2);
     }
 }

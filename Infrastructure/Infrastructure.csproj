@@ -30,6 +30,18 @@
       <Content Include="SeedData\ProductTypes.json">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>
+      <None Remove="SeedData\ProductImages.json" />
+      <Content Include="SeedData\ProductImages.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="SeedData\Products.json" />
+      <Content Include="SeedData\Products.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
+      <None Remove="SeedData\ProductStocks.json" />
+      <Content Include="SeedData\ProductStocks.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

@@ -1,22 +1,19 @@
 using System.Data.Common;
 using Infrastructure.Data;
-using Infrastructure.SeedData;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Logging;
 
 namespace Api.Tests.Integration.Fixtures;
 
-[Trait("Category", "Integration")]
-public abstract class IntegrationTest 
+public class IntegrationTestFixture
 {
-    protected readonly HttpClient _client;
-    protected readonly WebApplicationFactory<Program> _factory;
-
-    protected IntegrationTest()
+    public HttpClient Client => _client;
+    private readonly HttpClient _client;
+    private readonly WebApplicationFactory<Program> _factory;
+    
+    public IntegrationTestFixture()
     {
         _factory = new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
         {
@@ -50,24 +47,15 @@ public abstract class IntegrationTest
                 });
             });
         });
-        // using (var scope = _factory.Services.CreateScope())
-        // {
-        //     var scopedServices = scope.ServiceProvider;
-        //     var context = scopedServices.GetRequiredService<ApplicationDbContext>();
-        //     var loggerFactory = scopedServices.GetRequiredService<ILoggerFactory>();
-        //
-        //     try
-        //     {
-        //         context.Database.MigrateAsync();
-        //         StoreContextSeed.SeedAsync(context, loggerFactory);
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         var logger = loggerFactory.CreateLogger<Program>();
-        //         logger.LogError(ex, "An error occured during migration");
-        //     }
-        // }
-        
+
         _client = _factory.CreateClient();
+    }
+    
+    [CollectionDefinition("integrationTest collection")]
+    public class IntegrationTestCollection : ICollectionFixture<IntegrationTestFixture>
+    {
+        // This class has no code, and is never created. Its purpose is simply
+        // to be the place to apply [CollectionDefinition] and all the
+        // ICollectionFixture<> interfaces.
     }
 }

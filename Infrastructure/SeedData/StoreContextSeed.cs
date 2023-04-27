@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using System.Reflection;
 using System.Text.Json;
 using Core.Models;
 using Infrastructure.Data;
@@ -17,7 +19,9 @@ public class StoreContextSeed
         {
             if (!context.ProductTypes.Any())
             {
-                var productTypes = File.OpenRead("../Infrastructure/SeedData/ProductTypes.json");
+                string pathToProductTypesJson = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"SeedData/ProductTypes.json");
+                Trace.WriteLine(pathToProductTypesJson);
+                var productTypes = File.OpenRead(pathToProductTypesJson);
                 var pTypes = await JsonSerializer.DeserializeAsync<List<ProductType>>(productTypes);
                 foreach (var pType in pTypes) 
                 {
@@ -28,7 +32,9 @@ public class StoreContextSeed
             }
             if (!context.ProductStocks.Any())
             {
-                var productStocks = File.OpenRead("../Infrastructure/SeedData/ProductStocks.json");
+                string pathToProductStocksJson = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"SeedData/ProductStocks.json");
+                Trace.WriteLine(pathToProductStocksJson);
+                var productStocks = File.OpenRead(pathToProductStocksJson);
                 var pStocks = await JsonSerializer.DeserializeAsync<List<ProductStock>>(productStocks);
                 foreach (var pStock in pStocks)
                 {
@@ -39,8 +45,9 @@ public class StoreContextSeed
             }
             if (!context.Products.Any())
             {
-                var productStocks = File.OpenRead("../Infrastructure/SeedData/products.json");
-                var products = await JsonSerializer.DeserializeAsync<List<Product>>(productStocks);
+                string pathToProductContentJsom = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"SeedData/products.json");
+                var productContent = File.OpenRead(pathToProductContentJsom);
+                var products = await JsonSerializer.DeserializeAsync<List<Product>>(productContent);
                 foreach (var product in products)
                 {
                     context.Products.Add(product);
@@ -51,7 +58,8 @@ public class StoreContextSeed
             
             if (!context.ProductImages.Any())
             {
-                var productImages = File.OpenRead("../Infrastructure/SeedData/ProductImages.json");
+                string pathToProductImagesJsom = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"SeedData/ProductImages.json");
+                var productImages = File.OpenRead(pathToProductImagesJsom);
                 var pImages = await JsonSerializer.DeserializeAsync<List<ProductImage>>(productImages);
                 foreach (var pImage in pImages)
                 {
